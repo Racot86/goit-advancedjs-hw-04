@@ -2,22 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
+    <title>goit-advancedjs-hw3</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <load src="./partials/header.html" icon-path="img/sprite.svg#logo" />
+<header class="card header">
+  <img class="logo" width="92" src="./img/logo.png" alt="logo" />
+  <h3>Image search(pixabay)</h3>
+</header>
 
     <main>
-      <!-- Loads the specified .html file -->
-      <load src="./partials/vite-promo.html" />
-      <load src="./partials/badges.html" />
+      <form class="card search-bar">
+        <input class="input-search" name="data" />
+        <button class="btn btn-search" type="submit">
+          Search
+        </button>
+        <div class="btn loader-btn hidden">
+          <div class="loader"></div>
+        </div>
+      </form>
+      <div class="gallery">
+        <p class="tip">Type some words and hit Search to find images</p>
+      </div>
     </main>
-
-    <load src="./partials/footer.html" />
-
-    <script type="module" src="./main.js"></script>
+  <script src="./main.js" type="module"></script>
   </body>
 </html>
