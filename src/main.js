@@ -17,6 +17,7 @@ const btnGoUp = document.querySelector('.btn-go-up');
 const paginationEnd = document.querySelector('.pagination-end');
 let currentPage = 1;
 let searchVal = '';
+const perPage = 15;
 
 let box = new SimpleLightBox('.gallery a', {
   captionDelay: 250,
@@ -37,7 +38,7 @@ form.addEventListener('submit', e => {
   if (searchVal.length > 0){
     btnSearch.classList.add('hidden');
     loader.classList.remove('hidden');
-    injectElementsDataFromPixaBaySearch('46528220-f321f8a91f42a85f9ca952d44', searchVal)
+    injectElementsDataFromPixaBaySearch('46528220-f321f8a91f42a85f9ca952d44', searchVal, currentPage, perPage)
       .then((resData)=>{
         setTimeout(()=>{
           gallery.innerHTML = '';
@@ -67,7 +68,7 @@ loadMoreBtn.addEventListener('click', e => {
   moreText.classList.add('hidden');
   setTimeout(()=>{
     currentPage += 1;
-    injectElementsDataFromPixaBaySearch('46528220-f321f8a91f42a85f9ca952d44', searchVal,currentPage)
+    injectElementsDataFromPixaBaySearch('46528220-f321f8a91f42a85f9ca952d44', searchVal,currentPage, perPage)
       .then((resData)=>{
         if (resData.data.length > 0){
           gallery.appendChild(generateImageElementsFromJSON(resData.data));
