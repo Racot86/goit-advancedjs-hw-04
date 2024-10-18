@@ -1,11 +1,8 @@
 
 import SimpleLightBox from 'simplelightbox';
+import axios from 'axios';
 
-import generateImageElementsFromJSON from './render-functions.js';
-import iziToast from 'izitoast';
 
-const btnSearch = document.querySelector('.btn-search');
-const loader = document.querySelector('.loader-btn');
 
 let box = new SimpleLightBox('.gallery a', {
   captionDelay: 250,
@@ -13,42 +10,27 @@ let box = new SimpleLightBox('.gallery a', {
   showCounter: false,
 });
 
-export default function injectElementsDataFromPixaBaySearch (key, searchVal='flower', elementToInject) {
-  const requestOptions = new URLSearchParams( {
+const returnData = {
+  maxPages:1,
+  data:{}
+};
+
+export default async function injectElementsDataFromPixaBaySearch (key, searchVal='flower', page = 1, perPage= 20) {
+  const requestOptions = {
     key: key,
     q: searchVal,
     image_type: 'photo',
     orientation: 'portrait',
-    safesearch: 'true'
-  })
-  const options = {
-    headers: {
-      Accept: "application/json",
-    }
+    safesearch: 'true',
+    page:page,
+    per_page: perPage,
   };
 
-  fetch(`https://pixabay.com/api/?${requestOptions}`, options)
-    .then(res => {
-      return res.json();
-    })
-    .then(data => {
-      setTimeout(()=>{
-      elementToInject.innerHTML = '';
-      elementToInject.appendChild(generateImageElementsFromJSON(data.hits));
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-
-        box.refresh();
-        btnSearch.classList.remove('hidden');
-        loader.classList.add('hidden');
-      },500)
-
-    })
-    .catch(error => {
-      iziToast.error({title:error.message});
-    })
-
+  let data = await axios.get(`https://pixabay.com/api/`, {
+    params: requestOptions
+  })
+  returnData.data = data.data.hits;
+  returnData.maxPages = Math.ceil(data.data.totalHits / perPage);
+  return returnData;
 }
 

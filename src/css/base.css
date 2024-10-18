@@ -69,10 +69,10 @@ header h3{
 
 }
 .input-search:hover{
-  background: #F5F5F5;
+  background: #E6F1F6FF;
 }
 .input-search:focus{
-  background: lightgray;
+  background: #DEEBF1FF;
 }
 
 .btn{
@@ -119,9 +119,15 @@ header h3{
   scale: 1.05;
   transition: 0.2s ease-in-out;
 }
-.gallery-item:hover .bottom-panel{
+.icon-wrapper{
+  display: flex;
+  gap: 8px;
+}
+.gallery-item:hover .icon-wrapper{
   background: rgba(0,0,0,0.5);
   transition: 0.4s ease-in-out;
+  padding: 4px 8px;
+  border-radius: 8px;
 }
 
 .gallery-link{
@@ -146,7 +152,6 @@ header h3{
   width: 12px;
   height: 12px;
   animation: spin 2s linear infinite;
-  transition: 0.2s ease-in-out;
 }
 
 /* Keyframe animation for spinning */
@@ -158,9 +163,7 @@ header h3{
     transform: rotate(360deg);
   }
 }
-.hidden{
-  display: none;
-}
+
 .bottom-panel{
   display: flex;
   justify-content: center;
@@ -170,7 +173,6 @@ header h3{
   left: 0;
   width: 100%;
   height: 32px;
-  gap: 8px;
 }
 
  .material-symbols-outlined {
@@ -204,12 +206,91 @@ header h3{
   font-size: 108px;
 }
 
+.load-more-btn{
+  background: white;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 8px 0 rgba(179, 201, 221, 0.25);
+  color: teal;
+  transition: 0.2s ease-in-out;
+}
+.load-more-btn:hover{
+  color: white;
+}
+
+.dot-animation{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.dot{
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+}
+
+.pagination-end{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-bottom: 24px;
+}
+.pagination-end hr{
+  width: 100%;
+  border: none; /* Remove default styling */
+  border-top: 1px solid lightgray;
+}
+.pagination-end p{
+  font-weight: lighter;
+}
+.end-ico{
+  font-size: 48px;
+  color: lightgray;
+}
+.btn-go-up{
+  position: absolute;
+  top: 32px;
+  right: 8px;
+  padding: 12px;
+}
+.btn-go-up span{
+  font-size: 24px;
+}
+
+
+
+.dot-animation div:nth-child(1){
+  animation: opacity-blink 1s linear infinite;
+  animation-delay: 0s;
+}
+.dot-animation div:nth-child(2){
+  animation: opacity-blink 1s linear infinite;
+  animation-delay: 0.1s;
+}
+.dot-animation div:nth-child(3){
+  animation: opacity-blink 1s linear infinite;
+  animation-delay: 0.2s;
+}
+
 .blink{
   animation: blink 0.3s linear infinite;
 }
 
+@keyframes opacity-blink {
+  0%{ opacity: 1}
+  50%{ opacity: 0}
+  100%{ opacity: 1;}
+}
+
 @keyframes blink {
-  0%{ background: #F5F5F5;}
-  50%{ background: lightgray;}
-  100%{ background: #F5F5F5;}
+  0%{ background: #E6F1F6FF;}
+  50%{ background: #DEEBF1FF;}
+  100%{ background: #E6F1F6FF;}
+}
+
+.hidden{
+  display: none;
 }

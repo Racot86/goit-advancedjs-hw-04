@@ -19,6 +19,7 @@ export default function generateImageElementsFromJSON(json) {
                 />
               </a>
               <div class="bottom-panel">
+              <div class="icon-wrapper">
                 <div class="like-chip">
                   <span class="material-symbols-outlined">thumb_up</span>
                   <p class="like-number chip-text">${likes}</p>
@@ -35,6 +36,7 @@ export default function generateImageElementsFromJSON(json) {
                   <span class="material-symbols-outlined">download</span>
                   <p class="like-number chip-text">${downloads}</p>
                 </div>
+                </div>
               </div>
         </div>`
       ));
@@ -47,5 +49,6 @@ export default function generateImageElementsFromJSON(json) {
         </div>`
     ));
   }
+  allImagesFrag.children[0].classList.add('scroll');
   return allImagesFrag;
 }
